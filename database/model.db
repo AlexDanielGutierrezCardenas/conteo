@@ -1,0 +1,184 @@
+drop table conteovotos;
+drop table candidato;
+drop table mesas;
+drop table recinto;
+drop table municipio_departamento;
+drop table municipio;
+
+CREATE TABLE municipio (
+    id SERIAL PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL,
+    numero INT NOT NULL,
+    nombre_municipio VARCHAR(255) NOT NULL,
+    departamento VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE municipio_departamento (
+    id SERIAL PRIMARY KEY,
+    id_municipio INT NOT NULL,
+    num_distrito INT NOT NULL,
+    zona VARCHAR(255) NOT NULL,
+    foreign key (id_municipio) references municipio(id)
+);
+
+create table recinto(
+    id SERIAL PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL,
+    descripcion VARCHAR(255) NOT NULL,
+    id_municipio_departamento INT NOT NULL,
+    foreign key (id_municipio_departamento) references municipio_departamento(id)
+);
+
+create table mesas(
+    id SERIAL PRIMARY KEY,
+    numero_mesa INT NOT NULL,
+    numero_electores INT NOT NULL,
+    num_certificicado INT NOT NULL,
+    num_votantes INT NOT NULL,
+    numero_votos_blancos INT NOT NULL,
+    numero_votos_nulos INT NOT NULL,
+    id_recinto INT NOT NULL,
+    foreign key (id_recinto) references recinto(id)
+);
+
+create table candidato(
+    id SERIAL PRIMARY KEY,
+    nombre_completo VARCHAR(255) NOT NULL,
+    partido VARCHAR(255) NOT NULL,
+    propuesta VARCHAR(255) NOT NULL
+);
+
+create table conteovotos(
+    id SERIAL PRIMARY KEY,
+    id_candidato INT NOT NULL,
+    id_mesa INT NOT NULL,
+    num_voto INT NOT NULL,
+    foreign key (id_candidato) references candidato(id),
+    foreign key (id_mesa) references mesas(id)
+);
+--- Inserting data into the table municipio
+
+insert into municipio (nombre, numero, nombre_municipio, departamento) values ('uninominales', 33, 'potosi', 'potosi');
+insert into municipio (nombre, numero, nombre_municipio, departamento) values ('uninominales', 34, 'potosi', 'potosi');
+insert into municipio (nombre, numero, nombre_municipio, departamento) values ('uninominales', 34, 'tinquipaya', 'potosi');
+insert into municipio (nombre, numero, nombre_municipio, departamento) values ('uninominales', 34, 'yocalla', 'potosi');
+insert into municipio (nombre, numero, nombre_municipio, departamento) values ('uninominales', 34, 'urmiri', 'potosi');
+insert into municipio (nombre, numero, nombre_municipio, departamento) values ('uninominales', 35, 'betanzos', 'potosi');
+insert into municipio (nombre, numero, nombre_municipio, departamento) values ('uninominales', 35, 'chaqui', 'potosi');
+insert into municipio (nombre, numero, nombre_municipio, departamento) values ('uninominales', 35, 'tacobamba', 'potosi');
+insert into municipio (nombre, numero, nombre_municipio, departamento) values ('uninominales', 35, 'puna', 'potosi');
+insert into municipio (nombre, numero, nombre_municipio, departamento) values ('uninominales', 35, 'caiza D', 'potosi');
+insert into municipio (nombre, numero, nombre_municipio, departamento) values ('uninominales', 35, 'ckochas', 'potosi');
+insert into municipio (nombre, numero, nombre_municipio, departamento) values ('uninominales', 36, 'cotagaita', 'potosi');
+insert into municipio (nombre, numero, nombre_municipio, departamento) values ('uninominales', 36, 'porco', 'potosi');
+insert into municipio (nombre, numero, nombre_municipio, departamento) values ('uninominales', 36, 'tomave', 'potosi');
+insert into municipio (nombre, numero, nombre_municipio, departamento) values ('uninominales', 36, 'vitichi', 'potosi');
+insert into municipio (nombre, numero, nombre_municipio, departamento) values ('uninominales', 36, 'uyuni', 'potosi');
+insert into municipio (nombre, numero, nombre_municipio, departamento) values ('uninominales', 36, 'colcha k', 'potosi');
+insert into municipio (nombre, numero, nombre_municipio, departamento) values ('uninominales', 36, 'san pedro de quemes', 'potosi');
+insert into municipio (nombre, numero, nombre_municipio, departamento) values ('uninominales', 36, 'san agustin', 'potosi');
+insert into municipio (nombre, numero, nombre_municipio, departamento) values ('uninominales', 36, 'llica', 'potosi');
+insert into municipio (nombre, numero, nombre_municipio, departamento) values ('uninominales', 36, 'tahua', 'potosi');
+insert into municipio (nombre, numero, nombre_municipio, departamento) values ('uninominales', 37, 'tupiza', 'potosi');
+insert into municipio (nombre, numero, nombre_municipio, departamento) values ('uninominales', 37, 'atocha', 'potosi');
+insert into municipio (nombre, numero, nombre_municipio, departamento) values ('uninominales', 37, 'villazon', 'potosi');
+insert into municipio (nombre, numero, nombre_municipio, departamento) values ('uninominales', 37, 'san pablo de lipez', 'potosi');
+insert into municipio (nombre, numero, nombre_municipio, departamento) values ('uninominales', 37, 's.a. esmoruco', 'potosi');
+insert into municipio (nombre, numero, nombre_municipio, departamento) values ('uninominales', 37, 'mojinete', 'potosi');
+insert into municipio (nombre, numero, nombre_municipio, departamento) values ('uninominales', 38, 'llallagua', 'potosi');
+insert into municipio (nombre, numero, nombre_municipio, departamento) values ('uninominales', 38, 'caripuyo', 'potosi');
+insert into municipio (nombre, numero, nombre_municipio, departamento) values ('uninominales', 38, 'arampampa', 'potosi');
+insert into municipio (nombre, numero, nombre_municipio, departamento) values ('uninominales', 38, 'sacaca', 'potosi');
+insert into municipio (nombre, numero, nombre_municipio, departamento) values ('uninominales', 38, 'san pedro de b.v.', 'potosi');
+insert into municipio (nombre, numero, nombre_municipio, departamento) values ('uninominales', 38, 'toto toto', 'potosi');
+insert into municipio (nombre, numero, nombre_municipio, departamento) values ('uninominales', 39, 'chayanta', 'potosi');
+insert into municipio (nombre, numero, nombre_municipio, departamento) values ('uninominales', 39, 'uncia', 'potosi');
+insert into municipio (nombre, numero, nombre_municipio, departamento) values ('uninominales', 39, 'chuquihuta', 'potosi');
+insert into municipio (nombre, numero, nombre_municipio, departamento) values ('uninominales', 39, 'pocoata', 'potosi');
+insert into municipio (nombre, numero, nombre_municipio, departamento) values ('uninominales', 39, 'ocuri', 'potosi');
+insert into municipio (nombre, numero, nombre_municipio, departamento) values ('uninominales', 39, 'colquenchaca', 'potosi');
+insert into municipio (nombre, numero, nombre_municipio, departamento) values ('uninominales', 39, 'ravelo', 'potosi');
+
+--- Inserting data into the table municipio_departamento
+
+insert into municipio_departamento (id_municipio, num_distrito, zona) values (1, 1, 'san gerardo');
+insert into municipio_departamento (id_municipio, num_distrito, zona) values (1, 2, 'villa colon');
+insert into municipio_departamento (id_municipio, num_distrito, zona) values (1, 2, 'san martin');
+insert into municipio_departamento (id_municipio, num_distrito, zona) values (1, 2, 'la chacra');
+insert into municipio_departamento (id_municipio, num_distrito, zona) values (1, 3, 'concepcion');
+insert into municipio_departamento (id_municipio, num_distrito, zona) values (1, 4, 'campamento pailaviri');
+insert into municipio_departamento (id_municipio, num_distrito, zona) values (1, 4, 'san cristobal');
+insert into municipio_departamento (id_municipio, num_distrito, zona) values (1, 4, 'calvario');
+insert into municipio_departamento (id_municipio, num_distrito, zona) values (1, 5, 'cuartel-fe y alegria');
+insert into municipio_departamento (id_municipio, num_distrito, zona) values (1, 5, 'san roque');
+insert into municipio_departamento (id_municipio, num_distrito, zona) values (1, 5, 'gualberto villarroel');
+insert into municipio_departamento (id_municipio, num_distrito, zona) values (1, 6, 'alonso de ibanez');
+insert into municipio_departamento (id_municipio, num_distrito, zona) values (1, 6, 'zona central');
+insert into municipio_departamento (id_municipio, num_distrito, zona) values (1, 6, 'w. alba');
+insert into municipio_departamento (id_municipio, num_distrito, zona) values (1, 7, 'cachi rancho');
+insert into municipio_departamento (id_municipio, num_distrito, zona) values (1, 7, 'plaza minero');
+insert into municipio_departamento (id_municipio, num_distrito, zona) values (1, 7, 'san anselmo');
+insert into municipio_departamento (id_municipio, num_distrito, zona) values (1, 8, 'san benito');
+insert into municipio_departamento (id_municipio, num_distrito, zona) values (1, 8, 'v . busch');
+insert into municipio_departamento (id_municipio, num_distrito, zona) values (1, 11, 'cantumarca');
+insert into municipio_departamento (id_municipio, num_distrito, zona) values (1, 11, 'chuquimia');
+insert into municipio_departamento (id_municipio, num_distrito, zona) values (2, 9, 'plan 2000');
+insert into municipio_departamento (id_municipio, num_distrito, zona) values (2, 9, 'cementerio general');
+insert into municipio_departamento (id_municipio, num_distrito, zona) values (2, 9, 'las delicias');
+insert into municipio_departamento (id_municipio, num_distrito, zona) values (2, 9, 'villa magisterio');
+insert into municipio_departamento (id_municipio, num_distrito, zona) values (2, 9, 'armando alba');
+insert into municipio_departamento (id_municipio, num_distrito, zona) values (2, 9, 'villa fatima');
+insert into municipio_departamento (id_municipio, num_distrito, zona) values (2, 10, 'san clemente');
+insert into municipio_departamento (id_municipio, num_distrito, zona) values (2, 10, 'ciudad satelite');
+insert into municipio_departamento (id_municipio, num_distrito, zona) values (2, 10, 'v . tomas frias');
+insert into municipio_departamento (id_municipio, num_distrito, zona) values (2, 10, 'plan 40');
+insert into municipio_departamento (id_municipio, num_distrito, zona) values (2, 12, 'villa venezuela');
+insert into municipio_departamento (id_municipio, num_distrito, zona) values (2, 12, 'villa copacabana');
+insert into municipio_departamento (id_municipio, num_distrito, zona) values (2, 12, 'villa nazareth');
+insert into municipio_departamento (id_municipio, num_distrito, zona) values (2, 13, 'karachipampa');
+
+--- Inserting data into the table recinto
+
+insert into recinto (nombre, descripcion, id_municipio_departamento) values ('u.e. juan pablo ii', 'zona villa copacabana', 30);
+insert into recinto (nombre, descripcion, id_municipio_departamento) values ('esc. jose maria linarez', 'zona central', 13);
+
+
+--- Inserting data into the table mesas
+
+insert into mesas (numero_mesa, numero_electores, num_certificicado, num_votantes, numero_votos_blancos, numero_votos_nulos, id_recinto) values (1, 10, 0, 0, 0, 0, 1);
+insert into mesas (numero_mesa, numero_electores, num_certificicado, num_votantes, numero_votos_blancos, numero_votos_nulos, id_recinto) values (2, 10, 0, 0, 0, 0, 1);
+insert into mesas (numero_mesa, numero_electores, num_certificicado, num_votantes, numero_votos_blancos, numero_votos_nulos, id_recinto) values (3, 10, 0, 0, 0, 0, 1);
+insert into mesas (numero_mesa, numero_electores, num_certificicado, num_votantes, numero_votos_blancos, numero_votos_nulos, id_recinto) values (4, 10, 0, 0, 0, 0, 1);
+insert into mesas (numero_mesa, numero_electores, num_certificicado, num_votantes, numero_votos_blancos, numero_votos_nulos, id_recinto) values (5, 10, 0, 0, 0, 0, 1);
+insert into mesas (numero_mesa, numero_electores, num_certificicado, num_votantes, numero_votos_blancos, numero_votos_nulos, id_recinto) values (6, 10, 0, 0, 0, 0, 1);
+
+insert into mesas (numero_mesa, numero_electores, num_certificicado, num_votantes, numero_votos_blancos, numero_votos_nulos, id_recinto) values (1, 10, 0, 0, 0, 0, 2);
+insert into mesas (numero_mesa, numero_electores, num_certificicado, num_votantes, numero_votos_blancos, numero_votos_nulos, id_recinto) values (2, 10, 0, 0, 0, 0, 2);
+insert into mesas (numero_mesa, numero_electores, num_certificicado, num_votantes, numero_votos_blancos, numero_votos_nulos, id_recinto) values (3, 10, 0, 0, 0, 0, 2);
+insert into mesas (numero_mesa, numero_electores, num_certificicado, num_votantes, numero_votos_blancos, numero_votos_nulos, id_recinto) values (4, 10, 0, 0, 0, 0, 2);
+insert into mesas (numero_mesa, numero_electores, num_certificicado, num_votantes, numero_votos_blancos, numero_votos_nulos, id_recinto) values (5, 10, 0, 0, 0, 0, 2);
+insert into mesas (numero_mesa, numero_electores, num_certificicado, num_votantes, numero_votos_blancos, numero_votos_nulos, id_recinto) values (6, 10, 0, 0, 0, 0, 2);
+--- Inserting data into the table candidato
+
+insert into candidato (nombre_completo, partido, propuesta) values ('luis arce', 'mas ipsp', 'propuesta para el pueblo');
+insert into candidato (nombre_completo, partido, propuesta) values ('chi hyun chung', 'fpv', 'propuesta para el pueblo');
+insert into candidato (nombre_completo, partido, propuesta) values ('maria baya', 'apn', 'propuesta para el pueblo');
+insert into candidato (nombre_completo, partido, propuesta) values ('carlos mesa', 'cc', 'propuesta para el pueblo');
+
+
+
+--- Inserting data into the table conteovotos
+
+insert into conteovotos (id_candidato, id_mesa, num_voto) values (1, 1, 10);
+insert into conteovotos (id_candidato, id_mesa, num_voto) values (1, 2, 10);
+insert into conteovotos (id_candidato, id_mesa, num_voto) values (1, 3, 10);
+insert into conteovotos (id_candidato, id_mesa, num_voto) values (1, 4, 10);
+insert into conteovotos (id_candidato, id_mesa, num_voto) values (1, 5, 10);
+insert into conteovotos (id_candidato, id_mesa, num_voto) values (1, 6, 10);
+
+insert into conteovotos (id_candidato, id_mesa, num_voto) values (2, 1, 10);
+insert into conteovotos (id_candidato, id_mesa, num_voto) values (2, 2, 10);
+insert into conteovotos (id_candidato, id_mesa, num_voto) values (2, 3, 10);
+insert into conteovotos (id_candidato, id_mesa, num_voto) values (2, 4, 10);
+insert into conteovotos (id_candidato, id_mesa, num_voto) values (2, 5, 10);
+insert into conteovotos (id_candidato, id_mesa, num_voto) values (2, 6, 10);
